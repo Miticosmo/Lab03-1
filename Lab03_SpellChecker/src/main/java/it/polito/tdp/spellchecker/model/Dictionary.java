@@ -3,6 +3,7 @@ package it.polito.tdp.spellchecker.model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,7 @@ public class Dictionary {
 			String word;
 			while ((word = br.readLine()) != null) {
 				dizionario.add(word);
+				
 			}
 			br.close();
 		} catch (Exception e) {
@@ -54,11 +56,15 @@ public class Dictionary {
 		List<RichWord> paroleErrate = new ArrayList<>();
 		
 		for(String s : inputTextList) {
+			RichWord r = new RichWord(s);
 			if(!dizionario.contains(s)) {
-				RichWord r = new RichWord(s);
+				
 				r.setErrata(true);
 				paroleErrate.add(r);
-			}	
+			}
+			else
+			paroleErrate.add(r);
+			
 		}
 		if(!paroleErrate.isEmpty())
 			return paroleErrate;
@@ -67,7 +73,10 @@ public class Dictionary {
 	}
 	
 	
-	
+	public void pulisciDizionario()
+	{
+		dizionario.clear();
+	}
 	
 	
 
